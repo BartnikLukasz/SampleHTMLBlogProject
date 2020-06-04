@@ -1,0 +1,19 @@
+/*!
+ * Start Bootstrap - Blog Home (https://startbootstrap.com/template-overviews/blog-home)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-blog-home/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+  background: #313540;
+  color: #BEC4D0;
+}
+
+.col-md-4{
+    background:#1C2029;
+}
+
+.card{
+    background: #62666F;
+}
+
