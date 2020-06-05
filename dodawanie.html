@@ -36,13 +36,13 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="informacje.html">O nas</a>
+            <a class="nav-link" onclick="przejdzDoInformacji()" href="#">O nas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="regulamin.html">Regulamin</a>
+              <a class="nav-link" onclick="przejdzDoRegulaminu()" href="#">Regulamin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="kontakt.html">Kontakt</a>
+            <a class="nav-link" onclick="przejdzDoKontaktu()" href="#">Kontakt</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="rejestracja.html">Rejestracja</a>
@@ -69,7 +69,18 @@
                     <br>
                     <label> Podpis: </label> <input type="text" id="podpis"/> <br>
                     <label> Email: </label> <input type="text" id="email"/><br>
-                    <label> Treść</label> <textarea id="tresc"></textarea><br>
+                    <label> Tytuł:</label> <input type="text" id="tytul"/><br>
+                    <label> Treść:</label> <textarea id="tresc"></textarea><br>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="zdjecie"
+                            aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        </div>
+                    </div>
                     <label> Akceptuję <a href="./regulamin.html">regulamin</a> </label> <input type="radio" required/><br>
                     <button name="dodaj" onclick="dodajPost()"> Dodaj post </button>
                     
