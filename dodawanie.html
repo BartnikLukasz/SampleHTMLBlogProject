@@ -44,9 +44,6 @@
           <li class="nav-item">
             <a class="nav-link" onclick="przejdzDoKontaktu()" href="#">Kontakt</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="rejestracja.html">Rejestracja</a>
-          </li>
         </ul>
       </div>
     </div>
@@ -58,7 +55,7 @@
     <div class="row">
 
       <!-- Blog Entries Column -->
-      <div class="col-md-8">
+      <div class="col-md-8" id="main">
 
         <h1 class="my-4">Dodaj post
         </h1>
@@ -70,7 +67,7 @@
                     <label> Podpis: </label> <input type="text" id="podpis"/> <br>
                     <label> Email: </label> <input type="text" id="email"/><br>
                     <label> Tytuł:</label> <input type="text" id="tytul"/><br>
-                    <label> Treść:</label> <textarea id="tresc"></textarea><br>
+                    <label> Treść:</label> <textarea id="tresc" rows="4" cols="50"></textarea><br>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
@@ -107,15 +104,10 @@
 
         <!-- Categories Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Zarejestrowani użytkownicy</h5>
+          <h5 class="card-header">Autorzy postów</h5>
           <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
                 <ul class="list-unstyled mb-0" id="uzytkownicy">
                 </ul>
-              </div>
-
-            </div>
           </div>
         </div>
 

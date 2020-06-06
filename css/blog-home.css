@@ -21,3 +21,21 @@ a {
     color: #004085;
 }
 
+#edytuj{
+    color: #BEC4D0;
+    float: right;
+}
+
+#edytuj:hover{
+    text-decoration: none;
+}
+
+#icon{
+    width: 60px;
+    height: 60px;
+}
+
+#rejestracja{
+    text-align: center;
+}
+

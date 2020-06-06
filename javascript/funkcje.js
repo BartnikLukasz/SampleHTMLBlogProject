@@ -11,14 +11,14 @@ function rejestruj(){
 
 document.addEventListener('DOMContentLoaded', () => {
                 for(var i=0; i<localStorage.length; i++){
-                    var user = JSON.parse(localStorage.getItem('user'+i));
-                if(user!==null) document.getElementById('uzytkownicy').innerHTML+="<li>" + user.name + "</li>";
+                    var post = JSON.parse(localStorage.getItem('post'+i));
+                if(post!==null) document.getElementById('uzytkownicy').innerHTML+="<li>" + post.name + "</li>";
             }
             
             for(var j=0; j<localStorage.length; j++){
             var post = JSON.parse(localStorage.getItem('post'+j));
             
-            if(post!==null){
+            if(post!==null && document.getElementById('postMain')!==null){
             document.getElementById('postMain').innerHTML+='<img class="card-img-top" src="images/'+post.adres+'" alt="Card image cap">'+
          ' <div class="card-body">'+
             '<h2 class="card-title" id="tytulMain">'+post.tytul+'</h2>'+
@@ -41,16 +41,34 @@ function dodajPost(){
     
     localStorage.setItem('post'+localStorage.length, JSON.stringify(post));
     
-}   
+}
+
+function edytujPost(){
+    var id = sessionStorage.length-1;
+    var key = id.toString();
+    var post = {};
+    post.name=document.getElementById('podpis').value;
+    post.email=document.getElementById('email').value;
+    post.tytul=document.getElementById('tytul').value;
+    post.tresc=document.getElementById('tresc').value;
+    var zdjecie=document.getElementById('zdjecie').value;
+    post.adres = zdjecie.replace(/^.*\\/, "");
+    post.id=sessionStorage.getItem('idEdycji'+id);
+    localStorage.setItem('post'+sessionStorage.getItem('idEdycji'+id), JSON.stringify(post));
+}
 
 function wyswietlPost(id){
     document.getElementById('przykladowaKaruzela4').innerHTML="";
     document.getElementById('napis').innerHTML="";
     var post = JSON.parse(localStorage.getItem('post'+id));
         document.getElementById('postMain').innerHTML='<img class="card-img-top" src="images/'+post.adres+'" alt="Card image cap">'+
-                '<h3>'+post.tytul+'</h3>'+ post.tresc +'<br>'+post.name;
+                '<h3>'+post.tytul+'<small><small><a href="edycja.html" onclick="przejdzDoEdycji('+post.id+')" id="edytuj">Edytuj post</a></small></small></h3>'+ post.tresc +'<br>Autor: '+post.name;
     
   
+}
+
+function przejdzDoEdycji(id){
+    sessionStorage.setItem('idEdycji'+sessionStorage.length, id);
 }
 
 function przejdzDoRegulaminu(){
@@ -105,8 +123,8 @@ function przejdzDoKontaktu(){
     '<br> Email: bartnik.luk@gmail.com <br> Telefon: 123456789</p>'+
   '</div>'+
   '<div class="card-body">'+
-    '<a href="https://pl-pl.facebook.com/" class="card-link">Facebook</a>'+
-    '<a href="https://twitter.com/?lang=pl" class="card-link">Twitter</a>'+
+    '<a href="https://pl-pl.facebook.com/"  class="card-link"><img src="images/fb_icon.png" id="icon" alt="Facebook"></a>'+
+    '<a href="https://twitter.com/?lang=pl" class="card-link"><img src="images/twitter-icon.png" id="icon" alt="Twitter"></a>'+
   '</div>'+
 '</div>'+
     '</div>'+
@@ -119,8 +137,8 @@ function przejdzDoKontaktu(){
    ' <br> Telefon: 123456789</p>'+
   '</div>'+
   '<div class="card-body">'+
-    '<a href="https://pl-pl.facebook.com/" class="card-link">Facebook</a>'+
-    '<a href="https://twitter.com/?lang=pl" class="card-link">Twitter</a>'+
+    '<a href="https://pl-pl.facebook.com/"  class="card-link"><img src="images/fb_icon.png" id="icon" alt="Facebook"></a>'+
+    '<a href="https://twitter.com/?lang=pl" class="card-link"><img src="images/twitter-icon.png" id="icon" alt="Twitter"></a>'+
   '</div>'+
 '</div></div>'+
 
