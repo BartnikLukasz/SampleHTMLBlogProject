@@ -30,12 +30,38 @@ a {
     text-decoration: none;
 }
 
+#usun{
+    color: #BEC4D0;
+    float: right;
+}
+
+#usun:hover{
+    text-decoration: none;
+}
+
 #icon{
     width: 60px;
     height: 60px;
 }
 
-#rejestracja{
+#edycja, #dodawanie{
     text-align: center;
 }
 
+#przycisk{
+    background: #313540;
+    border: #313540;
+}
+
+#przycisk:hover{
+    background: #414550;
+}
+
+#zatwierdzenie{
+    background: #1C2029;
+    border: #1C2029;
+}
+
+#zatwierdzenie:hover{
+    background: #2C3039;;
+}

@@ -62,15 +62,15 @@
 
         <!-- Blog Post -->
         
-        <form id="rejestracja"> 
+        <form id="dodawanie" name="form"> 
                     <br>
-                    <label> Podpis: </label> <input type="text" id="podpis"/> <br>
-                    <label> Email: </label> <input type="text" id="email"/><br>
-                    <label> Tytuł:</label> <input type="text" id="tytul"/><br>
+                    <label> Podpis: </label> <input type="text" id="podpis" required/> <br>
+                    <label> Email: </label> <input type="email" id="email" required/><br>
+                    <label> Tytuł:</label> <input type="text" id="tytul" required/><br>
                     <label> Treść:</label> <textarea id="tresc" rows="4" cols="50"></textarea><br>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            <span class="input-group-text" id="inputGroupFileAddon01">Dodaj zdjęcie</span>
                         </div>
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="zdjecie"
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <label> Akceptuję <a href="./regulamin.html">regulamin</a> </label> <input type="radio" required/><br>
-                    <button name="dodaj" onclick="dodajPost()"> Dodaj post </button>
+                    <button name="dodaj" class="btn btn-primary" id="zatwierdzenie" onclick="dodajPost()"> Dodaj post </button>
                     
                     <br>
                     
@@ -97,7 +97,7 @@
         <div class="card my-4">
           <div class="card-body">
             <div class="input-group">
-                <button class="btn btn-primary" onclick="location.href='/ProjektKoncowy/dodawanie.html';" type="button">Dodaj post</button> 
+                <button class="btn btn-primary" id="przycisk" onclick="location.href='/ProjektKoncowy/dodawanie.html';" type="button">Dodaj post</button> 
             </div>
           </div>
         </div>

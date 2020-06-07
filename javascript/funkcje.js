@@ -1,21 +1,11 @@
 
-
-function rejestruj(){
-    var user = {};
-    user.name=document.getElementById('nazwaUzytkownika').value;
-    user.email=document.getElementById('email').value;
-    user.pass=document.getElementById('haslo').value;
-    
-    localStorage.setItem('user'+localStorage.length, JSON.stringify(user));
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-                for(var i=0; i<localStorage.length; i++){
+                for(var i=0; i<=localStorage.length+3; i++){
                     var post = JSON.parse(localStorage.getItem('post'+i));
                 if(post!==null) document.getElementById('uzytkownicy').innerHTML+="<li>" + post.name + "</li>";
             }
             
-            for(var j=0; j<localStorage.length; j++){
+            for(var j=0; j<=localStorage.length+3; j++){
             var post = JSON.parse(localStorage.getItem('post'+j));
             
             if(post!==null && document.getElementById('postMain')!==null){
@@ -23,27 +13,58 @@ document.addEventListener('DOMContentLoaded', () => {
          ' <div class="card-body">'+
             '<h2 class="card-title" id="tytulMain">'+post.tytul+'</h2>'+
           
-            '<a onclick="wyswietlPost('+post.id+')" class="btn btn-primary">Czytaj dalej &rarr;</a>'+
+            '<a onclick="wyswietlPost('+post.id+')" id="przycisk" class="btn btn-primary">Czytaj dalej &rarr;</a>'+
           '</div>';
             }
         }
             });
             
 function dodajPost(){
+    
+    var f = document.forms["form"].elements;
+        var spelniaWarunki = true;
+
+        for (var i = 0; i < f.length; i++) {
+            if (f[i].value.length === 0) spelniaWarunki = false;
+        }
+    
+    if(spelniaWarunki){
+    
     var post = {};
+    var id = sessionStorage.length-1;
     post.name=document.getElementById('podpis').value;
     post.email=document.getElementById('email').value;
     post.tytul=document.getElementById('tytul').value;
     post.tresc=document.getElementById('tresc').value;
     var zdjecie=document.getElementById('zdjecie').value;
     post.adres = zdjecie.replace(/^.*\\/, "");
-    post.id=localStorage.length;
     
-    localStorage.setItem('post'+localStorage.length, JSON.stringify(post));
+    for(var i=0; i<=localStorage.length; i++){
+       var keyName = 'post'+i;
+       if(localStorage.getItem(keyName)===null){
+        post.id=i;
+        localStorage.setItem('post'+i, JSON.stringify(post));
+        break;
+    }
+        }
+        
+    }else{
+        alert("Proszę wypełnić wszystkie pola formularza");
+    }
     
 }
 
 function edytujPost(){
+    
+    var f = document.forms["form"].elements;
+        var spelniaWarunki = true;
+
+        for (var i = 0; i < f.length; i++) {
+            if (f[i].value.length === 0) spelniaWarunki = false;
+        }
+    
+    if(spelniaWarunki){
+    
     var id = sessionStorage.length-1;
     var key = id.toString();
     var post = {};
@@ -55,6 +76,25 @@ function edytujPost(){
     post.adres = zdjecie.replace(/^.*\\/, "");
     post.id=sessionStorage.getItem('idEdycji'+id);
     localStorage.setItem('post'+sessionStorage.getItem('idEdycji'+id), JSON.stringify(post));
+    
+    }else{
+        alert("Proszę wypełnić wszystkie pola formularza");
+    }
+}
+
+function sprawdzAutorow(autor){
+    for(var i=0; i<localStorage.length; i++){
+        var post = JSON.parse(localStorage.getItem('post'+i));
+        if(post.name===autor){
+            return false;
+        }
+    }
+    return true;
+}
+
+function usunPost(id){
+    localStorage.removeItem('post'+id);
+    alert("Post został usunięty");
 }
 
 function wyswietlPost(id){
@@ -62,10 +102,24 @@ function wyswietlPost(id){
     document.getElementById('napis').innerHTML="";
     var post = JSON.parse(localStorage.getItem('post'+id));
         document.getElementById('postMain').innerHTML='<img class="card-img-top" src="images/'+post.adres+'" alt="Card image cap">'+
-                '<h3>'+post.tytul+'<small><small><a href="edycja.html" onclick="przejdzDoEdycji('+post.id+')" id="edytuj">Edytuj post</a></small></small></h3>'+ post.tresc +'<br>Autor: '+post.name;
+                '<h3>'+post.tytul+'<small><small><a href="edycja.html" onclick="przejdzDoEdycji('+post.id+')" id="edytuj">Edytuj post</a><a href="#" onclick="usunPost('+post.id+')" id="usun"><p>Usun post</a></small></small></h3>'+ post.tresc +'<br>Autor: '+post.name;
     
   
 }
+
+function sprawdzFormularz()
+    {
+        var f = document.forms["form"].elements;
+        var spelniaWarunki = true;
+
+        for (var i = 0; i < f.length; i++) {
+            if (f[i].value.length == 0) cansubmit = false;
+        }
+
+        if (spelniaWarunki) {
+            document.getElementById('zatwierdzenie').disabled = false;
+        }
+    }
 
 function przejdzDoEdycji(id){
     sessionStorage.setItem('idEdycji'+sessionStorage.length, id);
